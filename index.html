@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otaku Universe 🌀</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f39c12;
+            border-radius: 10px;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(15, 12, 41, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #f39c12;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #f39c12, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo span {
+            font-size: 30px;
+        }
+
+        nav a {
+            margin-left: 30px;
+            font-weight: 600;
+            transition: 0.3s;
+            padding: 8px 16px;
+            border-radius: 25px;
+        }
+
+        nav a:hover {
+            background: #f39c12;
+            color: #0f0c29;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 50px 60px;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 .highlight {
+            color: #f39c12;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #ccc;
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: linear-gradient(45deg, #f39c12, #e74c3c);
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 20px rgba(243, 156, 18, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(243, 156, 18, 0.6);
+        }
+
+        .hero-img {
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        .hero-img img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(243, 156, 18, 0.3);
+            transition: 0.5s;
+        }
+
+        .hero-img img:hover {
+            transform: scale(1.03);
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #f39c12;
+            margin: 12px auto 0;
+            border-radius: 4px;
+        }
+
+        /* ===== CARTES PERSONNAGES ===== */
+        .characters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 0 50px 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 25px;
+            width: 220px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #f39c12;
+            box-shadow: 0 12px 40px rgba(243, 156, 18, 0.2);
+        }
+
+        .card img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #f39c12;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        /* ===== GRILLE ANIMES ===== */
+        .anime-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 50px 40px;
+        }
+
+        .anime-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            width: 280px;
+            transition: 0.4s;
+            border: 1px solid transparent;
+        }
+
+        .anime-item:hover {
+            border-color: #f39c12;
+            transform: scale(1.03);
+        }
+
+        .anime-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .anime-item .info {
+            padding: 16px;
+        }
+
+        .anime-item .info h4 {
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .anime-item .info p {
+            font-size: 13px;
+            color: #aaa;
+        }
+
+        /* ===== RAISON SECTION ===== */
+        .reasons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 0 50px 50px;
+        }
+
+        .reason {
+            background: rgba(243, 156, 18, 0.08);
+            border-left: 4px solid #f39c12;
+            padding: 25px 30px;
+            border-radius: 12px;
+            width: 300px;
+            transition: 0.3s;
+        }
+
+        .reason:hover {
+            background: rgba(243, 156, 18, 0.15);
+        }
+
+        .reason .icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .reason h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .reason p {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        /* ===== WHATSAPP BANNER ===== */
+        .whatsapp-banner {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            margin: 50px auto;
+            max-width: 750px;
+            border-radius: 30px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(37, 211, 102, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whatsapp-banner::before {
+            content: "💬";
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.08;
+            top: -30px;
+            right: -20px;
+            transform: rotate(15deg);
+        }
+
+        .whatsapp-banner h2 {
+            font-size: 34px;
+            margin-bottom: 14px;
+        }
+
+        .whatsapp-banner p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            padding: 16px 48px;
+            background: #fff;
+            color: #128C7E;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 800;
+            transition: 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-whatsapp:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 0 50px 50px;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 25px;
+            width: 280px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .testimonial .stars {
+            color: #f39c12;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial p {
+            font-size: 14px;
+            font-style: italic;
+            color: #ccc;
+        }
+
+        .testimonial .author {
+            margin-top: 12px;
+            font-weight: 700;
+            color: #f39c12;
+        }
+
+        /* ===== STATS ===== */
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+            padding: 40px 50px;
+            background: rgba(255, 255, 255, 0.03);
+            margin: 0 50px;
+            border-radius: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat .number {
+            font-size: 42px;
+            font-weight: 800;
+            color: #f39c12;
+        }
+
+        .stat .label {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 40px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        footer .socials {
+            margin-bottom: 16px;
+            font-size: 28px;
+            letter-spacing: 12px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 10px;
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .hero-text p {
+                margin: 0 auto 30px;
+            }
+
+            .hero-img img {
+                max-width: 280px;
+            }
+
+            .section-title {
+                font-size: 28px;
+                margin: 40px 0 30px;
+            }
+
+            .characters,
+            .anime-grid,
+            .reasons,
+            .testimonials {
+                padding: 0 20px;
+            }
+
+            .stats {
+                margin: 0 20px;
+                gap: 30px;
+            }
+
+            .whatsapp-banner {
+                margin: 30px 20px;
+                padding: 35px 20px;
+            }
+
+            .whatsapp-banner h2 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="logo"><span>🌀</span> Otaku Universe</div>
+        <nav>
+            <a href="#accueil">Accueil</a>
+            <a href="#personnages">Personnages</a>
+            <a href="#animes">Animes</a>
+            <a href="#whatsapp">WhatsApp</a>
+        </nav>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="accueil">
+        <div class="hero-text">
+            <h1>Bienvenue dans l'<span class="highlight">Univers Otaku</span> 🌀</h1>
+            <p>
+                Que tu sois un ninja de Konoha, un pirate en quête du One Piece ou un
+                chasseur de démons, ici c'est chez toi ! Plonge dans le monde
+                passionnant des animes, mangas et de la culture japonaise.
+            </p>
+            <a href="#personnages" class="btn">Explorer</a>
+        </div>
+        <div class="hero-img">
+            <img
+                src="https://fr.web.img4.acsta.net/c_310,420/medias/nmedia/18/35/79/87/18648800.jpg"
+                alt="Naruto Uzumaki"
+                onerror="this.src='https://via.placeholder.com/500x400/f39c12/0f0c29?text=Naruto'"
+            >
+        </div>
+    </section>
+
+    <!-- ===== STATS ===== -->
+    <div class="stats">
+        <div class="stat">
+            <div class="number">10K+</div>
+            <div class="label">Membres Otaku</div>
+        </div>
+        <div class="stat">
+            <div class="number">500+</div>
+            <div class="label">Animes Répertoriés</div>
+        </div>
+        <div class="stat">
+            <div class="number">24/7</div>
+            <div class="label">Discussions Actives</div>
+        </div>
+        <div class="stat">
+            <div class="number">🔥</div>
+            <div class="label">Communauté au Top</div>
+        </div>
+    </div>
+
+    <!-- ===== PERSONNAGES ===== -->
+    <h2 class="section-title" id="personnages">⚡ Personnages Légendaires</h2>
+    <div class="characters">
+        <div class="card">
+            <img
+                src="https://fr.web.img5.acsta.net/c_310,420/pictures/15/10/13/15/55/438316.jpg"
+                alt="Naruto"
+                onerror="this.src='https://via.placeholder.com/140/f39c12/fff?text=Naruto'"
+            >
+            <h3>Naruto Uzumaki</h3>
+            <p>Le ninja le plus déterminé de Konoha !</p>
+        </div>
+        <div class="card">
+            <img
+                src="https://fr.web.img5.acsta.net/c_310,420/pictures/15/10/13/15/55/371346.jpg"
+                alt="Sasuke"
+                onerror="this.src='https://via.placeholder.com/140/e74c3c/fff?text=Sasuke'"
+            >
+            <h3>Sasuke Uchiwa</h3>
+            <p>Le génie du Sharingan, sombre et puissant.</p>
+        </div>
+        <div class="card">
+            <img
+                src="https://fr.web.img6.acsta.net/c_310,420/pictures/15/10/13/15/55/455573.jpg"
+                alt="Sakura"
+                onerror="this.src='https://via.placeholder.com/140/ff69b4/fff?text=Sakura'"
+            >
+            <h3>Sakura Haruno</h3>
+            <p>La kunoichi au poing surpuissant !</p>
+        </div>
+        <div class="card">
+            <img
+                src="https://fr.web.img3.acsta.net/c_310,420/medias/nmedia/18/35/79/87/18648864.jpg"
+                alt="Kakashi"
+                onerror="this.src='https://via.placeholder.com/140/888/fff?text=Kakashi'"
+            >
+            <h3>Kakashi Hatake</h3>
+            <p>Le ninja copieur au masque mystérieux.</p>
+        </div>
+    </div>
+
+    <!-- ===== ANIMES POPULAIRES ===== -->
+    <h2 class="section-title" id="animes">🎬 Animes Incontournables</h2>
+    <div class="anime-grid">
+        <div class="anime-item">
+            <img
+                src="https://fr.web.img6.acsta.net/c_310,420/pictures/20/06/25/10/44/4923452.jpg"
+                alt="Naruto Shippuden"
+                onerror="this.src='https://via.placeholder.com/280x180/f39c12/fff?text=Naruto+Shippuden'"
+            >
+            <div class="info">
+                <h4>Naruto Shippuden</h4>
+                <p>La suite des aventures de Naruto adulte. Action, émotion et ninjas !</p>
+            </div>
+        </div>
+        <div class="anime-item">
+            <img
+                src="https://fr.web.img5.acsta.net/c_310,420/pictures/23/11/07/16/40/5757150.jpg"
+                alt="One Piece"
+                onerror="this.src='https://via.placeholder.com/280x180/e74c3c/fff?text=One+Piece'"
+            >
+            <div class="info">
+                <h4>One Piece</h4>
+                <p>Luffy et son équipage partent à la conquête du One Piece !</p>
+            </div>
+        </div>
+        <div class="anime-item">
+            <img
+                src="https://fr.web.img6.acsta.net/c_310,420/pictures/19/09/23/09/25/0335439.jpg"
+                alt="Demon Slayer"
+                onerror="this.src='https://via.placeholder.com/280x180/8e44ad/fff?text=Demon+Slayer'"
+            >
+            <div class="info">
+                <h4>Demon Slayer</h4>
+                <p>Tanjiro traque les démons pour sauver sa sœur. Chef-d'œuvre visuel !</p>
+            </div>
+        </div>
+        <div class="anime-item">
+            <img
+                src="https://fr.web.img5.acsta.net/c_310,420/pictures/21/04/01/15/53/0694237.jpg"
+                alt="Attack on Titan"
+                onerror="this.src='https://via.placeholder.com/280x180/2c3e50/fff?text=AOT'"
+            >
+            <div class="info">
+                <h4>Attack on Titan</h4>
+                <p>L'humanité lutte pour survivre face aux Titans. Épique et sombre.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== POURQUOI REJOINDRE ===== -->
+    <h2 class="section-title">🔥 Pourquoi Rejoindre Notre Communauté ?</h2>
+    <div class="reasons">
+        <div class="reason">
+            <div class="icon">🗣️</div>
+            <h3>Discussions Animées</h3>
+            <p>Débat sur tes arcs narratifs préférés, théories, et meilleurs combats.</p>
+        </div>
+        <div class="reason">
+            <div class="icon">📢</div>
+            <h3>Actus & Sorties</h3>
+            <p>Les dernières news animes, sorties manga, et annonces en exclusivité.</p>
+        </div>
+        <div class="reason">
+            <div class="icon">🎮</div>
+            <h3>Jeux & Quiz</h3>
+            <p>Défis otaku, quiz, jeux de rôle et événements tous les mois.</p>
+        </div>
+        <div class="reason">
+            <div class="icon">🤝</div>
+            <h3>Entraide & Amitié</h3>
+            <p>Une communauté soudée, bienveillante et passionnée. Viens comme tu es !</p>
+        </div>
+    </div>
+
+    <!-- ===== TÉMOIGNAGES ===== -->
+    <h2 class="section-title">⭐ Ils Parlent de Nous</h2>
+    <div class="testimonials">
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"Meilleure communauté otaku que j'ai jamais rejointe. Tout le monde est super sympa !"</p>
+            <div class="author">— Itachi_77</div>
+        </div>
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"Grâce à ce groupe j'ai découvert des perles rares d'animes. Merci mille fois !"</p>
+            <div class="author">— Luffy_D_King</div>
+        </div>
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"Les débats sur Naruto vs One Piece sont légendaires ici. Je recommande à 200%."</p>
+            <div class="author">— Tanjiro_Slayer</div>
+        </div>
+    </div>
+
+    <!-- ===== WHATSAPP BANNER ===== -->
+    <div class="whatsapp-banner" id="whatsapp">
+        <h2>📱 Rejoins Notre Chaîne WhatsApp</h2>
+        <p>
+            Tu veux être au courant de TOUTE l'actualité otaku ?<br>
+            <strong>Actus, exclusivités, memes, quiz et bons plans</strong> – directement sur ton téléphone !
+        </p>
+        <p style="font-size:22px; font-weight:700;">🔴 Une chaîne <strong>FORMIDABLE</strong> pour les vrais otaku !</p>
+        <p style="font-size:16px; margin-bottom:20px; opacity:0.9;">
+            👑 Propriétaire : <strong>wahz_boy</strong> &nbsp;|&nbsp; 📞 Contact : <strong>+228 92 81 92 43</strong>
+        </p>
+        <a
+            href="https://whatsapp.com/channel/0029VaurH4zATRSoSFOp3k1Z"
+            target="_blank"
+            class="btn-whatsapp"
+        >
+            💬 Rejoindre la Chaîne WhatsApp
+        </a>
+        <p style="margin-top:20px; font-size:14px; opacity:0.8;">
+            Plus de 500 otaku déjà connectés – Ne rate rien !
+        </p>
+    </div>
+
+    <!-- ===== AVANT DE PARTIR ===== -->
+    <div style="text-align:center; padding:20px 50px 10px;">
+        <h2 style="font-size:28px; margin-bottom:10px;">✨ N'oublie Pas !</h2>
+        <p style="color:#bbb; max-width:600px; margin:0 auto;">
+            Que tu sois fan de Naruto, One Piece, Demon Slayer, AOT, Dragon Ball ou autre…
+            <strong style="color:#f39c12;">TA PLACE EST ICI</strong>. La chaîne WhatsApp est
+            <strong style="color:#25D366;">vraiment formidable</strong>, ne passe pas à côté !
+        </p>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="socials">
+            <span>💬</span> <span>🐦</span> <span>📷</span> <span>🎥</span>
+        </div>
+        <p>
+            © 2026 <strong>Otaku Universe</strong> — Fait avec 💛 pour les otaku du monde entier.<br>
+            « Dans le monde ninja, ceux qui abandonnent sont encore pires que des déchets. » — Naruto
+        </p>
+        <p style="margin-top:10px;">
+            👑 Propriétaire : <strong>wahz_boy</strong> &nbsp;|&nbsp; 📞 <strong>+228 92 81 92 43</strong>
+        </p>
+        <p style="margin-top:6px;">
+            🔗 Chaîne WhatsApp :
+            <a
+                href="https://whatsapp.com/channel/0029VaurH4zATRSoSFOp3k1Z"
+                style="color:#25D366; font-weight:700;"
+                target="_blank"
+            >
+                whatsapp.com/channel/0029VaurH4zATRSoSFOp3k1Z
+            </a>
+        </p>
+    </footer>
+
+</body>
+</html>
